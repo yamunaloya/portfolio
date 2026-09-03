@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loya Yamuna — Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0D13;
+    --bg-panel:#11151F;
+    --bg-panel-2:#161B27;
+    --rule:#232838;
+    --text:#E9ECF3;
+    --text-soft:#8A93A6;
+    --accent:#5EE0D8;
+    --accent-2:#7C9CFF;
+    --glow: radial-gradient(circle, rgba(94,224,216,0.28) 0%, rgba(94,224,216,0) 70%);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    margin:0;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:rgba(10,13,19,0.75);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{
+    max-width:1040px;
+    margin:0 auto;
+    padding:20px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:16px;
+    text-decoration:none;
+    letter-spacing:0.01em;
+  }
+  .brand .dot{color:var(--accent);}
+  nav ul{
+    display:flex;
+    gap:30px;
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  nav a{
+    text-decoration:none;
+    font-size:14px;
+    color:var(--text-soft);
+    transition:color 0.15s ease;
+  }
+  nav a:hover{color:var(--text);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:120px 0 100px;
+    overflow:hidden;
+  }
+  .hero-glow{
+    position:absolute;
+    top:-220px;
+    right:-160px;
+    width:640px;
+    height:640px;
+    background:var(--glow);
+    filter:blur(10px);
+    pointer-events:none;
+  }
+  .hero-eyebrow{
+    color:var(--accent);
+    font-size:14px;
+    margin-bottom:22px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .hero-eyebrow .pulse{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 0 rgba(94,224,216,0.6);
+    animation:pulse 2.2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(94,224,216,0.5);}
+    70%{box-shadow:0 0 0 10px rgba(94,224,216,0);}
+    100%{box-shadow:0 0 0 0 rgba(94,224,216,0);}
+  }
+  .hero h1{
+    font-size:60px;
+    line-height:1.08;
+    font-weight:700;
+    max-width:14ch;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 .grad{
+    background:linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero .role-line{
+    margin-top:22px;
+    font-size:20px;
+    color:var(--text-soft);
+    display:flex;
+    align-items:center;
+    gap:2px;
+  }
+  .role-line .roles{
+    color:var(--accent);
+    font-weight:500;
+  }
+  .cursor{
+    display:inline-block;
+    width:2px;
+    height:20px;
+    background:var(--accent);
+    margin-left:4px;
+    animation:blink 1s step-end infinite;
+    transform:translateY(4px);
+  }
+  @keyframes blink{50%{opacity:0;}}
+  .hero p.lead{
+    margin-top:26px;
+    font-size:17px;
+    line-height:1.7;
+    color:var(--text-soft);
+    max-width:56ch;
+  }
+  .hero-actions{
+    margin-top:36px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:14px;
+    font-weight:500;
+    text-decoration:none;
+    padding:13px 24px;
+    border-radius:8px;
+    display:inline-block;
+    transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .btn.primary{
+    background:var(--accent);
+    color:#06110F;
+  }
+  .btn.primary:hover{
+    box-shadow:0 0 24px rgba(94,224,216,0.4);
+    transform:translateY(-1px);
+  }
+  .btn.ghost{
+    border:1px solid var(--rule);
+    color:var(--text);
+  }
+  .btn.ghost:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+
+  .stat-row{
+    margin-top:64px;
+    display:flex;
+    gap:48px;
+    flex-wrap:wrap;
+  }
+  .stat .num{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:32px;
+    font-weight:700;
+  }
+  .stat .num span{color:var(--accent);}
+  .stat .label{
+    font-size:13px;
+    color:var(--text-soft);
+    margin-top:4px;
+  }
+
+  /* ---------- Section shared ---------- */
+  section{padding:96px 0;}
+  .section-eyebrow{
+    color:var(--accent);
+    font-size:13px;
+    margin-bottom:14px;
+  }
+  .section-head h2{
+    font-size:32px;
+    font-weight:700;
+    max-width:16ch;
+  }
+  .section-sub{
+    color:var(--text-soft);
+    font-size:16px;
+    margin-top:14px;
+    max-width:52ch;
+    line-height:1.6;
+  }
+
+  /* ---------- Skills grid ---------- */
+  .skills-grid{
+    margin-top:48px;
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+    border-radius:14px;
+    overflow:hidden;
+  }
+  .skill-cell{
+    background:var(--bg-panel);
+    padding:28px;
+  }
+  .skill-cell h3{
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:12px;
+  }
+  .skill-cell h3 .idx{
+    color:var(--accent);
+    margin-right:8px;
+  }
+  .pillrow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .pill{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--text-soft);
+    border:1px solid var(--rule);
+    padding:6px 12px;
+    border-radius:999px;
+    background:var(--bg-panel-2);
+  }
+
+  /* ---------- Projects ---------- */
+  .project-grid{
+    margin-top:48px;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+  .project-card{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:0;
+    background:var(--bg-panel);
+    border:1px solid var(--rule);
+    border-radius:16px;
+    overflow:hidden;
+    transition:border-color 0.2s ease;
+  }
+  .project-card:hover{border-color:var(--accent);}
+  .project-visual{
+    background:var(--bg-panel-2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+    min-height:220px;
+  }
+  .project-body{
+    padding:32px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .project-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+  .project-body h3{
+    font-size:21px;
+    margin-bottom:10px;
+  }
+  .project-body p{
+    color:var(--text-soft);
+    font-size:15px;
+    line-height:1.65;
+    margin:0 0 16px;
+  }
+  .tagrow{display:flex; gap:8px; flex-wrap:wrap;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--text-soft);
+    border:1px solid var(--rule);
+    padding:4px 10px;
+    border-radius:6px;
+  }
+
+  /* ---------- Education ---------- */
+  .edu-card{
+    margin-top:48px;
+    background:var(--bg-panel);
+    border:1px solid var(--rule);
+    border-radius:16px;
+    padding:32px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .edu-card h3{font-size:19px; margin-bottom:6px;}
+  .edu-card .edu-loc{color:var(--text-soft); font-size:14px;}
+  .edu-year{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--accent);
+    font-size:15px;
+    border:1px solid var(--rule);
+    padding:8px 16px;
+    border-radius:999px;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-card{
+    position:relative;
+    margin-top:8px;
+    background:var(--bg-panel);
+    border:1px solid var(--rule);
+    border-radius:20px;
+    padding:64px 48px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .contact-card .hero-glow{top:-260px; left:50%; transform:translateX(-50%); right:auto;}
+  .contact-card h2{
+    font-size:36px;
+    max-width:18ch;
+    margin:0 auto 18px;
+  }
+  .contact-card p{
+    color:var(--text-soft);
+    max-width:44ch;
+    margin:0 auto 32px;
+    line-height:1.6;
+  }
+  .contact-links{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+    position:relative;
+    z-index:1;
+  }
+
+  footer{
+    padding:32px 0;
+    border-top:1px solid var(--rule);
+    display:flex;
+    justify-content:space-between;
+    color:var(--text-soft);
+    font-size:13px;
+  }
+
+  @media (max-width:760px){
+    .wrap{padding:0 20px;}
+    .nav-inner{padding:16px 20px;}
+    nav ul{gap:16px;}
+    .hero{padding:80px 0 60px;}
+    .hero h1{font-size:38px;}
+    .stat-row{gap:28px; margin-top:44px;}
+    section{padding:64px 0;}
+    .skills-grid{grid-template-columns:1fr;}
+    .project-card{grid-template-columns:1fr;}
+    .contact-card{padding:44px 24px;}
+    footer{flex-direction:column; gap:8px; text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="#top" class="brand">Loya Yamuna<span class="dot">.</span></a>
+    <nav>
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <div class="hero-glow"></div>
+    <div class="hero-eyebrow mono"><span class="pulse"></span>AVAILABLE FOR OPPORTUNITIES · TIRUPATI, INDIA</div>
+    <h1>I turn raw data into <span class="grad">decisions worth making.</span></h1>
+    <div class="role-line">
+      I'm a <span class="roles" id="roleText">Data Analyst</span><span class="cursor"></span>
+    </div>
+    <p class="lead">I clean, model, and visualize data so teams can stop guessing. My toolkit runs from SQL and Python through Power BI and Tableau — with a habit of automating anything I have to do twice.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#work">See the work</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+    </div>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="num"><span>05</span></div>
+        <div class="label mono">CORE TOOLS</div>
+      </div>
+      <div class="stat">
+        <div class="num"><span>2027</span></div>
+        <div class="label mono">EXPECTED GRAD</div>
+      </div>
+      <div class="stat">
+        <div class="num"><span>ECE</span></div>
+        <div class="label mono">B.E. AT SVCE</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow mono">01 — TOOLKIT</div>
+      <h2>What I work with</h2>
+      <p class="section-sub">The core tools I use to move from raw data to a decision someone can act on.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cell">
+        <h3><span class="idx mono">01</span>Querying &amp; data</h3>
+        <div class="pillrow">
+          <span class="pill">SQL</span>
+          <span class="pill">Excel</span>
+          <span class="pill">Data Cleaning</span>
+          <span class="pill">Data Wrangling</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <h3><span class="idx mono">02</span>Programming</h3>
+        <div class="pillrow">
+          <span class="pill">Python</span>
+          <span class="pill">pandas</span>
+          <span class="pill">Automation</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <h3><span class="idx mono">03</span>Visualization</h3>
+        <div class="pillrow">
+          <span class="pill">Power BI</span>
+          <span class="pill">Tableau</span>
+          <span class="pill">Dashboard Design</span>
+        </div>
+      </div>
+      <div class="skill-cell">
+        <h3><span class="idx mono">04</span>Focus areas</h3>
+        <div class="pillrow">
+          <span class="pill">Data-Driven Decisions</span>
+          <span class="pill">Reporting Automation</span>
+          <span class="pill">Business Insights</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow mono">02 — PROJECTS</div>
+      <h2>Selected work</h2>
+      <p class="section-sub">Placeholders below — swap in real projects with the question they answered, the tools used, and the outcome.</p>
+    </div>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-visual">
+          <svg width="180" height="120" viewBox="0 0 180 120" fill="none">
+            <rect x="0" y="70" width="24" height="50" rx="3" fill="#5EE0D8" opacity="0.85"/>
+            <rect x="32" y="40" width="24" height="80" rx="3" fill="#5EE0D8" opacity="0.6"/>
+            <rect x="64" y="55" width="24" height="65" rx="3" fill="#5EE0D8" opacity="0.4"/>
+            <rect x="96" y="20" width="24" height="100" rx="3" fill="#7C9CFF" opacity="0.9"/>
+            <rect x="128" y="45" width="24" height="75" rx="3" fill="#7C9CFF" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tag mono">POWER BI · SQL</div>
+          <h3>Sales performance dashboard</h3>
+          <p>Placeholder — describe the business question, data source, and outcome, e.g. "cut manual reporting from 3 days to 1 hour."</p>
+          <div class="tagrow">
+            <span class="tag">DAX</span>
+            <span class="tag">ETL</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-visual">
+          <svg width="180" height="120" viewBox="0 0 180 120" fill="none">
+            <polyline points="0,100 30,80 60,90 90,40 120,55 150,15 180,30" stroke="#5EE0D8" stroke-width="3" fill="none"/>
+            <circle cx="120" cy="55" r="4" fill="#7C9CFF"/>
+            <circle cx="150" cy="15" r="4" fill="#7C9CFF"/>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tag mono">PYTHON · TABLEAU</div>
+          <h3>Customer churn analysis</h3>
+          <p>Placeholder — describe dataset size, method (e.g. cohort analysis), and the finding that changed a decision.</p>
+          <div class="tagrow">
+            <span class="tag">pandas</span>
+            <span class="tag">Cohort Analysis</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-visual">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="60" r="50" stroke="#232838" stroke-width="14" fill="none"/>
+            <circle cx="60" cy="60" r="50" stroke="#5EE0D8" stroke-width="14" fill="none" stroke-dasharray="235 314" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tag mono">PYTHON · EXCEL</div>
+          <h3>Automated reporting pipeline</h3>
+          <p>Placeholder — describe the manual process you automated and the time or error reduction it delivered.</p>
+          <div class="tagrow">
+            <span class="tag">Automation</span>
+            <span class="tag">Scripting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow mono">03 — BACKGROUND</div>
+      <h2>Education</h2>
+    </div>
+    <div class="edu-card">
+      <div>
+        <h3>Sri Venkateswara College of Engineering</h3>
+        <div class="edu-loc">Bachelor of Engineering, Electronics and Communications Engineering (ECE)</div>
+      </div>
+      <div class="edu-year mono">AUG 2023 – MAY 2027</div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap">
+    <div class="contact-card">
+      <div class="hero-glow"></div>
+      <h2>Let's talk about your data.</h2>
+      <p>Looking to join a team that treats data as a decision-making tool, or have a project in mind? I'd love to hear about it.</p>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:yamunaloya@gmail.com">yamunaloya@gmail.com</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/loyayamuna-826056347" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>© 2026 Loya Yamuna</span>
+  <span>Tirupati, Andhra Pradesh, India</span>
+</footer>
+
+<script>
+  (function(){
+    var roles = ["Data Analyst", "SQL & Python", "Dashboard Builder", "Insight Driven"];
+    var el = document.getElementById('roleText');
+    if(!el) return;
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(prefersReduced) return;
+    var i = 0;
+    setInterval(function(){
+      i = (i + 1) % roles.length;
+      el.style.opacity = 0;
+      setTimeout(function(){
+        el.textContent = roles[i];
+        el.style.opacity = 1;
+      }, 220);
+    }, 2400);
+    el.style.transition = 'opacity 0.2s ease';
+  })();
+</script>
+
+</body>
+</html>
